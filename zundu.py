@@ -10,7 +10,7 @@ z2h[尊嘟语]:尊嘟语转人类语(zundu to human)
 """.strip()
 
 #GPT转换的源码
-b64 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/'
+b64 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/='
 leftEye = ['o', '0', 'O', 'Ö']
 mouth = ['w', 'v', '.', '_']
 rightEye = ['o', '0', 'O', 'Ö']
@@ -37,7 +37,8 @@ def human2zdjd(t):
   for i in range(lent):
     c = t[i]
     n = b64.index(c)
-    arr.append(table[n])
+    if n < len(table):
+      arr.append(table[n])
 
   data = separator.join(arr)
   return addCalls(data)
